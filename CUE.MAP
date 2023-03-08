@@ -1,0 +1,432 @@
+
+ CUE
+
+ Start     Length     Name                   Class
+ 0001:0000 02CF5H     _TEXT                  CODE
+ 0001:2CF6 00000H     C_ETEXT                ENDCODE
+ 0002:0000 00042H     NULL                   BEGDATA
+ 0002:0042 00CEEH     _DATA                  DATA
+ 0002:0D30 0000EH     CDATA                  DATA
+ 0002:0D3E 00000H     XIB                    DATA
+ 0002:0D3E 00000H     XI                     DATA
+ 0002:0D3E 00000H     XIE                    DATA
+ 0002:0D3E 00000H     XPB                    DATA
+ 0002:0D3E 00002H     XP                     DATA
+ 0002:0D40 00000H     XPE                    DATA
+ 0002:0D40 00000H     XCB                    DATA
+ 0002:0D40 00000H     XC                     DATA
+ 0002:0D40 00000H     XCE                    DATA
+ 0002:0D40 00000H     CONST                  CONST
+ 0002:0D40 00008H     HDR                    MSG
+ 0002:0D48 000FAH     MSG                    MSG
+ 0002:0E42 00002H     PAD                    MSG
+ 0002:0E44 00001H     EPAD                   MSG
+ 0002:0E46 00026H     _BSS                   BSS
+ 0002:0E6C 00000H     XOB                    BSS
+ 0002:0E6C 00000H     XO                     BSS
+ 0002:0E6C 00000H     XOE                    BSS
+ 0002:0E70 046A0H     c_common               BSS
+ 0002:5510 00A00H     STACK                  STACK
+
+ Origin   Group
+ 0002:0   DGROUP
+
+  Address         Publics by Name
+
+ 0001:0105       ADJUSTDELAYRATE
+ 0002:10F6       ALIASES
+ 0002:0E70       ALIASNAME
+ 0002:054E       AUTHOR
+ 0001:0233       CHECKCOMM
+ 0001:0B5F       CHECKDETACHED
+ 0001:0280       CHECKNUMERIC
+ 0000:0000  Imp  CUEDEREGISTER        (CUESUBS.2)
+ 0000:0000  Imp  CUEDETACH            (CUESUBS.7)
+ 0000:0000  Imp  CUEDETACHED          (CUESUBS.42)
+ 0000:0000  Imp  CUEFREESEGMENTS      (CUESUBS.12)
+ 0000:0000  Imp  CUEGETALIASES        (CUESUBS.5)
+ 0000:0000  Imp  CUEGETMESSAGE        (CUESUBS.9)
+ 0000:0000  Imp  CUEGETSEGMENTS       (CUESUBS.11)
+ 0000:0000  Imp  CUEINSERTINPUT       (CUESUBS.6)
+ 0000:0000  Imp  CUEREGISTER          (CUESUBS.1)
+ 0000:0000  Imp  CUESETALIASES        (CUESUBS.4)
+ 0000:0000  Imp  CUESETSTATE          (CUESUBS.3)
+ 0000:0000  Imp  CUEUNDETACH          (CUESUBS.8)
+ 0002:52FE       DEBUG
+ 0001:0657       DECIMAL
+ 0002:0EF0       DEFAULTDELAYRATE
+ 0002:52FC       DELAYRATESET
+ 0000:0000  Imp  DOSALLOCSEG          (DOSCALLS.34)
+ 0000:0000  Imp  DOSCHGFILEPTR        (DOSCALLS.58)
+ 0000:0000  Imp  DOSCLOSE             (DOSCALLS.59)
+ 0000:0000  Imp  DOSDELETE            (DOSCALLS.60)
+ 0000:0000  Imp  DOSDEVIOCTL          (DOSCALLS.53)
+ 0000:0000  Imp  DOSEXECPGM           (DOSCALLS.144)
+ 0000:0000  Imp  DOSEXIT              (DOSCALLS.5)
+ 0000:0000  Imp  DOSGETMACHINEMODE    (DOSCALLS.49)
+ 0000:0000  Imp  DOSGETVERSION        (DOSCALLS.92)
+ 0000:0000  Imp  DOSNEWSIZE           (DOSCALLS.68)
+ 0000:0000  Imp  DOSOPEN              (DOSCALLS.70)
+ 0000:0000  Imp  DOSQFILEMODE         (DOSCALLS.75)
+ 0000:0000  Imp  DOSQHANDTYPE         (DOSCALLS.77)
+ 0000:0000  Imp  DOSREAD              (DOSCALLS.137)
+ 0000:0000  Imp  DOSREALLOCSEG        (DOSCALLS.38)
+ 0000:0000  Imp  DOSSETVEC            (DOSCALLS.89)
+ 0000:0000  Imp  DOSWRITE             (DOSCALLS.138)
+ 0002:5300       FIRSTLOAD
+ 0002:0544       FSSTATE
+ 0002:0546       FSSTATESET
+ 0001:02B6       GETSWITCHES
+ 0001:0010       HELP
+ 0001:05E8       HEX
+ 0002:0EF4       HISTORYSET
+ 0001:0DF2       INT3
+ 0002:52FA       LIST
+ 0001:07C5       LISTALIASES
+ 0001:0882       LOADALIASES
+ 0001:06C0       LOADINPUT
+ 0002:054C       PDESC
+ 0002:054A       PNAME
+ 0002:530E       PSIMINPUT
+ 0002:50F8       QUIET
+ 0002:5304       REGPKT
+ 0001:0190       SETLINES
+ 0001:0A69       STATS
+ 0002:0ACA       STKHQQ
+ 0002:0542       UCOMMPORT
+ 0002:0548       UCOMMRATE
+ 0002:5302       VIDEOBUFFSET
+ 0000:0000  Imp  VIOGETCONFIG         (VIOCALLS.VIOGETCONFIG)
+ 0000:0000  Imp  VIOGETCURPOS         (VIOCALLS.VIOGETCURPOS)
+ 0000:0000  Imp  VIOSETCURPOS         (VIOCALLS.VIOSETCURPOS)
+ 0000:0000  Imp  VIOSETMODE           (VIOCALLS.VIOSETMODE)
+ 0000:0000  Imp  VIOWRTTTY            (VIOCALLS.VIOWRTTTY)
+ 0001:29E2       _atoi
+ 0001:289E       _brkctl
+ 0001:21E2       _close
+ 0002:0E46       _edata
+ 0002:5510       _end
+ 0002:0ABF       _environ
+ 0002:0A88       _errno
+ 0001:0F51       _exit
+ 0001:1342       _fclose
+ 0001:2A9C       _fdopen
+ 0001:1872       _fflush
+ 0001:2B4E       _fgets
+ 0001:13FC       _flushall
+ 0001:142E       _fprintf
+ 0001:26E4       _free
+ 0001:0DF2       _int3
+ 0001:2A78       _isatty
+ 0001:2A3A       _itoa
+ 0001:220C       _lseek
+ 0001:0BB0       _main
+ 0001:26F6       _malloc
+ 0001:224A       _open
+ 0001:146C       _printf
+ 0001:2402       _read
+ 0001:2CDA       _remove
+ 0001:2BA4       _sopen
+ 0001:26D2       _stackavail
+ 0001:2954       _strcat
+ 0001:2BB6       _strchr
+ 0001:2BE0       _strcmpi
+ 0001:2994       _strcpy
+ 0001:2BE0       _stricmp
+ 0001:29C6       _strlen
+ 0001:2C22       _strnicmp
+ 0001:2A60       _tolower
+ 0001:2A56       _ultoa
+ 0001:2CDA       _unlink
+ 0001:2552       _write
+ 0002:0A70       __abrkp
+ 0002:0970       __abrktb
+ 0002:0A70       __abrktbe
+ 0002:0A72       __acfinfo
+ 0002:0966       __acmdln
+ 0000:9876  Abs  __acrtmsg
+ 0000:9876  Abs  __acrtused
+ 0002:0AC8       __adbgmsg
+ 0002:0968       __aenvseg
+ 0002:096E       __aexit_rtn
+ 0001:273F       __amalloc
+ 0001:287E       __amallocbrk
+ 0002:0C18       __amblksiz
+ 0001:2822       __amexpand
+ 0001:285C       __amlink
+ 0001:0E50       __amsg_exit
+ 0002:0C12       __aseg1
+ 0002:0C08       __asegds
+ 0002:0C1A       __asegh
+ 0002:0C14       __asegn
+ 0002:0C16       __asegr
+ 0002:096A       __asizds
+ 0002:0C2C       __asizeC
+ 0002:0C2D       __asizeD
+ 0001:0DF4       __astart
+ 0002:096C       __atopsp
+ 0002:5310       __buferr
+ 0002:50FA       __bufin
+ 0002:0EF6       __bufout
+ 0001:29E6       __catox
+ 0002:0C1E       __cfltcvt_tab
+ 0002:0AD6       __cflush
+ 0002:0AC5       __child
+ 0001:0FF0       __chkstk
+ 0001:0ED0       __cinit
+ 0001:0E46       __cintDIV
+ 0001:2C7A       __cltoasub
+ 0001:2252       __copensub
+ 0001:0FAC       __ctermsub
+ 0002:0C2E       __ctype
+ 0002:0C2E       __ctype_
+ 0001:23F0       __cXENIXtoDOSmode
+ 0001:2C86       __cxtoa
+ 0002:0A8F       __doserrno
+ 0002:0A8E       __dosmode
+ 0001:1309       __dosret
+ 0001:12FA       __dosretf
+ 0002:0A8C       __dosvermajor
+ 0002:0A8D       __dosverminor
+ 0001:0F68       __exit
+ 0002:0A80       __fac
+ 0001:0FCA       __FF_MSGBANNER
+ 0001:14A8       __filbuf
+ 0001:1568       __flsbuf
+ 0002:0C06       __fmode
+ 0002:0D32       __fpinit
+ 0001:0FEA       __fptrap
+ 0001:16BE       __freebuf
+ 0001:17DC       __ftbuf
+ 0001:16EC       __getbuf
+ 0001:21A8       __getstream
+ 0002:0AD8       __iob
+ 0002:0B78       __iob2
+ 0002:0C06       __iomode
+ 0002:0BF0       __lastiob
+ 0002:0A91       __nfile
+ 0001:26E4       __nfree
+ 0001:26F6       __nmalloc
+ 0001:120E       __NMSG_TEXT
+ 0001:123E       __NMSG_WRITE
+ 0001:1006       __nullcheck
+ 0002:0A8F       __oserr
+ 0002:0A93       __osfile
+ 0002:0A8C       __osmajor
+ 0002:0A8D       __osminor
+ 0002:0A8E       __osmode
+ 0002:0A8C       __osversion
+ 0001:18E0       __output
+ 0002:0AC1       __pgmptr
+ 0002:0AA7       __pipe
+ 0002:0C1A       __QChdata
+ 0001:1028       __setargv
+ 0001:1196       __setenvp
+ 0002:0C2A       __sigintoff
+ 0002:0C28       __sigintseg
+ 0001:1758       __stbuf
+ 0001:1272       __stdalloc
+ 0002:0A8A       __umaskval
+ 0002:0ABB       ___argc
+ 0002:0ABD       ___argv
+
+  Address         Publics by Value
+
+ 0000:0000  Imp  DOSALLOCSEG          (DOSCALLS.34)
+ 0000:0000  Imp  VIOSETCURPOS         (VIOCALLS.VIOSETCURPOS)
+ 0000:0000  Imp  CUEGETSEGMENTS       (CUESUBS.11)
+ 0000:0000  Imp  DOSREAD              (DOSCALLS.137)
+ 0000:0000  Imp  DOSNEWSIZE           (DOSCALLS.68)
+ 0000:0000  Imp  CUEINSERTINPUT       (CUESUBS.6)
+ 0000:0000  Imp  CUEDETACH            (CUESUBS.7)
+ 0000:0000  Imp  VIOGETCONFIG         (VIOCALLS.VIOGETCONFIG)
+ 0000:0000  Imp  DOSGETMACHINEMODE    (DOSCALLS.49)
+ 0000:0000  Imp  DOSEXIT              (DOSCALLS.5)
+ 0000:0000  Imp  CUESETALIASES        (CUESUBS.4)
+ 0000:0000  Imp  CUEGETMESSAGE        (CUESUBS.9)
+ 0000:0000  Imp  DOSSETVEC            (DOSCALLS.89)
+ 0000:0000  Imp  VIOWRTTTY            (VIOCALLS.VIOWRTTTY)
+ 0000:0000  Imp  DOSCHGFILEPTR        (DOSCALLS.58)
+ 0000:0000  Imp  CUEFREESEGMENTS      (CUESUBS.12)
+ 0000:0000  Imp  DOSGETVERSION        (DOSCALLS.92)
+ 0000:0000  Imp  CUEGETALIASES        (CUESUBS.5)
+ 0000:0000  Imp  CUESETSTATE          (CUESUBS.3)
+ 0000:0000  Imp  DOSCLOSE             (DOSCALLS.59)
+ 0000:0000  Imp  DOSOPEN              (DOSCALLS.70)
+ 0000:0000  Imp  DOSEXECPGM           (DOSCALLS.144)
+ 0000:0000  Imp  CUEUNDETACH          (CUESUBS.8)
+ 0000:0000  Imp  DOSQHANDTYPE         (DOSCALLS.77)
+ 0000:0000  Imp  DOSREALLOCSEG        (DOSCALLS.38)
+ 0000:0000  Imp  VIOGETCURPOS         (VIOCALLS.VIOGETCURPOS)
+ 0000:0000  Imp  DOSWRITE             (DOSCALLS.138)
+ 0000:0000  Imp  CUEREGISTER          (CUESUBS.1)
+ 0000:0000  Imp  CUEDETACHED          (CUESUBS.42)
+ 0000:0000  Imp  DOSDEVIOCTL          (DOSCALLS.53)
+ 0000:0000  Imp  DOSDELETE            (DOSCALLS.60)
+ 0000:0000  Imp  CUEDEREGISTER        (CUESUBS.2)
+ 0000:0000  Imp  DOSQFILEMODE         (DOSCALLS.75)
+ 0000:0000  Imp  VIOSETMODE           (VIOCALLS.VIOSETMODE)
+ 0000:9876  Abs  __acrtused
+ 0000:9876  Abs  __acrtmsg
+ 0001:0010       HELP
+ 0001:0105       ADJUSTDELAYRATE
+ 0001:0190       SETLINES
+ 0001:0233       CHECKCOMM
+ 0001:0280       CHECKNUMERIC
+ 0001:02B6       GETSWITCHES
+ 0001:05E8       HEX
+ 0001:0657       DECIMAL
+ 0001:06C0       LOADINPUT
+ 0001:07C5       LISTALIASES
+ 0001:0882       LOADALIASES
+ 0001:0A69       STATS
+ 0001:0B5F       CHECKDETACHED
+ 0001:0BB0       _main
+ 0001:0DF2       INT3
+ 0001:0DF2       _int3
+ 0001:0DF4       __astart
+ 0001:0E46       __cintDIV
+ 0001:0E50       __amsg_exit
+ 0001:0ED0       __cinit
+ 0001:0F51       _exit
+ 0001:0F68       __exit
+ 0001:0FAC       __ctermsub
+ 0001:0FCA       __FF_MSGBANNER
+ 0001:0FEA       __fptrap
+ 0001:0FF0       __chkstk
+ 0001:1006       __nullcheck
+ 0001:1028       __setargv
+ 0001:1196       __setenvp
+ 0001:120E       __NMSG_TEXT
+ 0001:123E       __NMSG_WRITE
+ 0001:1272       __stdalloc
+ 0001:12FA       __dosretf
+ 0001:1309       __dosret
+ 0001:1342       _fclose
+ 0001:13FC       _flushall
+ 0001:142E       _fprintf
+ 0001:146C       _printf
+ 0001:14A8       __filbuf
+ 0001:1568       __flsbuf
+ 0001:16BE       __freebuf
+ 0001:16EC       __getbuf
+ 0001:1758       __stbuf
+ 0001:17DC       __ftbuf
+ 0001:1872       _fflush
+ 0001:18E0       __output
+ 0001:21A8       __getstream
+ 0001:21E2       _close
+ 0001:220C       _lseek
+ 0001:224A       _open
+ 0001:2252       __copensub
+ 0001:23F0       __cXENIXtoDOSmode
+ 0001:2402       _read
+ 0001:2552       _write
+ 0001:26D2       _stackavail
+ 0001:26E4       _free
+ 0001:26E4       __nfree
+ 0001:26F6       __nmalloc
+ 0001:26F6       _malloc
+ 0001:273F       __amalloc
+ 0001:2822       __amexpand
+ 0001:285C       __amlink
+ 0001:287E       __amallocbrk
+ 0001:289E       _brkctl
+ 0001:2954       _strcat
+ 0001:2994       _strcpy
+ 0001:29C6       _strlen
+ 0001:29E2       _atoi
+ 0001:29E6       __catox
+ 0001:2A3A       _itoa
+ 0001:2A56       _ultoa
+ 0001:2A60       _tolower
+ 0001:2A78       _isatty
+ 0001:2A9C       _fdopen
+ 0001:2B4E       _fgets
+ 0001:2BA4       _sopen
+ 0001:2BB6       _strchr
+ 0001:2BE0       _strcmpi
+ 0001:2BE0       _stricmp
+ 0001:2C22       _strnicmp
+ 0001:2C7A       __cltoasub
+ 0001:2C86       __cxtoa
+ 0001:2CDA       _remove
+ 0001:2CDA       _unlink
+ 0002:0542       UCOMMPORT
+ 0002:0544       FSSTATE
+ 0002:0546       FSSTATESET
+ 0002:0548       UCOMMRATE
+ 0002:054A       PNAME
+ 0002:054C       PDESC
+ 0002:054E       AUTHOR
+ 0002:0966       __acmdln
+ 0002:0968       __aenvseg
+ 0002:096A       __asizds
+ 0002:096C       __atopsp
+ 0002:096E       __aexit_rtn
+ 0002:0970       __abrktb
+ 0002:0A70       __abrkp
+ 0002:0A70       __abrktbe
+ 0002:0A72       __acfinfo
+ 0002:0A80       __fac
+ 0002:0A88       _errno
+ 0002:0A8A       __umaskval
+ 0002:0A8C       __osmajor
+ 0002:0A8C       __osversion
+ 0002:0A8C       __dosvermajor
+ 0002:0A8D       __osminor
+ 0002:0A8D       __dosverminor
+ 0002:0A8E       __dosmode
+ 0002:0A8E       __osmode
+ 0002:0A8F       __doserrno
+ 0002:0A8F       __oserr
+ 0002:0A91       __nfile
+ 0002:0A93       __osfile
+ 0002:0AA7       __pipe
+ 0002:0ABB       ___argc
+ 0002:0ABD       ___argv
+ 0002:0ABF       _environ
+ 0002:0AC1       __pgmptr
+ 0002:0AC5       __child
+ 0002:0AC8       __adbgmsg
+ 0002:0ACA       STKHQQ
+ 0002:0AD6       __cflush
+ 0002:0AD8       __iob
+ 0002:0B78       __iob2
+ 0002:0BF0       __lastiob
+ 0002:0C06       __fmode
+ 0002:0C06       __iomode
+ 0002:0C08       __asegds
+ 0002:0C12       __aseg1
+ 0002:0C14       __asegn
+ 0002:0C16       __asegr
+ 0002:0C18       __amblksiz
+ 0002:0C1A       __asegh
+ 0002:0C1A       __QChdata
+ 0002:0C1E       __cfltcvt_tab
+ 0002:0C28       __sigintseg
+ 0002:0C2A       __sigintoff
+ 0002:0C2C       __asizeC
+ 0002:0C2D       __asizeD
+ 0002:0C2E       __ctype
+ 0002:0C2E       __ctype_
+ 0002:0D32       __fpinit
+ 0002:0E46       _edata
+ 0002:0E70       ALIASNAME
+ 0002:0EF0       DEFAULTDELAYRATE
+ 0002:0EF4       HISTORYSET
+ 0002:0EF6       __bufout
+ 0002:10F6       ALIASES
+ 0002:50F8       QUIET
+ 0002:50FA       __bufin
+ 0002:52FA       LIST
+ 0002:52FC       DELAYRATESET
+ 0002:52FE       DEBUG
+ 0002:5300       FIRSTLOAD
+ 0002:5302       VIDEOBUFFSET
+ 0002:5304       REGPKT
+ 0002:530E       PSIMINPUT
+ 0002:5310       __buferr
+ 0002:5510       _end
+
+Program entry point at 0001:0DF4

@@ -1,0 +1,55 @@
+LIBRARY CUESUBS INITINSTANCE
+DESCRIPTION 'CUE Video and Keyboard replacements'
+
+PROTMODE
+DATA SINGLE
+
+SEGMENTS
+	_TEXT	    CLASS 'CODE'     PRELOAD
+	_IOPLTEXT   CLASS 'CODE'     PRELOAD	IOPL
+	_HELP	    CLASS 'FAR_DATA' LOADONCALL
+
+EXPORTS
+	CueRegister	@1	;cuereg.c
+	CueDeRegister	@2	;cuereg.c
+	CueSetState	@3	;cuesubs.c
+	CueSetAliases	@4	;cuesubs.c
+	CueGetAliases	@5	;cuesubs.c
+	CueInsertInput	@6	;cuesubs.c
+	CueDetach	@7	;cuesubs.c
+	CueUnDetach	@8	;cuesubs.c
+	CueGetMessage	@9	;cuesubs.c
+	CueSendMessage	@10	;cuesubs.c
+	CueGetSegments	@11	;cuesubs.c
+	CueFreeSegments @12	;cuesubs.c
+	CueSetPopup	@13	;cuesubs.c
+	CuePopup	@40	;cuepop.c
+	CueSysVer	@41	;cueproc.c
+	CueDetached	@42	;cueproc.c
+	CueProcName	@43	;cueproc.c
+	CueToLower	@50	;cueutil.c
+	CueIsAlphaNum	@51	;cueutil.c
+	CueStrniCmp	@52	;cueutil.c
+	CueStrPrev	@53	;cueutil.c
+	CueStrToken	@54	;cueutil.c
+	_KbdRouter	@100	;cuekreg.c
+	_KbdCharIn	@101	;cuekreg.c
+	_KbdPeek	@102	;cuekreg.c
+	_KbdFlushBuffer @103	;cuekreg.c
+	_KbdStringIn	@106	;cuekreg.c
+	_VioRouter	@200	;cuevreg.c
+	_VioGetMode	@206	;cuevreg.c
+	_VioSetMode	@209	;cuevreg.c
+	_VioWrtTTY	@218	;cuevreg.c
+	_VioScrollUp	@219	;cuevreg.c
+	_VioPrtSc	@225	;cuevreg.c
+	_VioScrLock	@226	;cuevreg.c
+	_VioScrUnLock	@227	;cuevreg.c
+	_VioPrtScToggle @232	;cuevreg.c
+	_VioGetConfig	@236	;cuevreg.c
+
+; IOPL Functions
+
+	TestAndSet	@90  3	;cuesup.asm
+	InB		@91  1	;cuesup.asm
+	OutB		@92  2	;cuesup.asm

@@ -1,0 +1,289 @@
+CUE Release Notes
+
+January, 1989
+Jeff Parsons
+
+
+Changes
+
+	Version 2.06 has a new option (-Y) that forces automatic
+	line-editing when a program doing single-character keyboard
+	input reads a character while the cursor is at column 1.
+	This feature was added specifically for debugging OS/2 with
+	an OS/2 terminal program (like T.EXE, which is available in
+	\\cyclops\scratch\brucek\terminal).  Use this option with
+	care, and only when you need it, because you can find yourself
+	stuck in line-editing mode when you least expect it (such as
+	in a full-screen editor, when you move the cursor to column 1).
+
+	To exit automatic line-editing mode at any time, press
+	F10 (running CUE with the -NY option will also work, if you
+	can make it back to your prompt).
+
+
+	Note:  One problem people have occasionally run into is
+	an OS/2 error message indicating the system "is not configured
+	to run this application".  This is simply because Cue
+	requires I/O privilege.  Add the statement "IOPL=YES" to your
+	CONFIG.SYS and all will be well.  Cue uses IOPL routines to
+	implement critical sections for its own fast, safe RAM semaphores.
+	It does not use OS/2's fast, safe RAM semaphores, because this
+	would restrict use of Cue to 1.1 and later.  Cue does not
+	perform any direct hardware port access.
+
+
+	Version 2.01 has the following minor additions:
+
+	1. The K option allows you to inhibit PrtSc* functions
+	   for that screen group.  This will only work reliably if
+	   run a copy of the shell under CUE, as in:
+
+		CUE [options] CMD
+
+	   Otherwise, CUE becomes the process registered to intercept
+	   PrtSc* functions, and when it exits, PrtSc functions are
+	   enabled again.  The NK option allows you to re-enable them.
+
+	2. The O option allows you to inhibit CUE's use of the
+	   Ctrl-function keys, in case you have applications that
+	   make use of them.  You can re-enable them at any time
+	   with the NO option.
+
+
+	Version 2.00 has the following improvements:
+
+	1. Ability to run in a VIO window under PM (recommend
+	   PM build 4.43 with Base build 4.117 or later);  to do
+	   so, you need to have the new CUE.SYS device driver
+	   installed in your CONFIG.SYS
+
+	2. Pop-up enhancements:
+
+	    - More scrolling functions (Pgup, Pgdn, Home, End,
+	      Ctrl-Home, Ctrl-End, etc);  press Alt-F1 after
+	      running to CUE get a more complete list
+
+	    - Limited searching capability (ie, next line beginning
+	      with selected character is highlighted)
+
+	    - Ability to customize pop-ups (change position, size,
+	      colors, etc)
+
+	    - Additional pop-ups (screen group palette control,
+	      ASCII character chart, etc)
+
+	3. Scroll buffer enhancements (includes all the additional
+	   scrolling/searching functions listed above, plus the ability
+	   to select lines from the screen -- or the scroll buffer --
+	   for command-line editing)
+
+	4. Ability to select default command-line cursor type
+	   (block or underscore) and default mode (insert or over-
+	   strike)
+
+	5. A few changes in the key assignments (the only one that
+	   comes to mind is Ctrl-Del, which replaces Ctrl-Home as the
+	   function that clears the history buffer)
+
+
+	Version 2.00 does not include the following "wish-list" items,
+	but they are slated for the next major update:
+
+	1. TOOLS.INI configuration
+
+	2. Alias parameter substitution
+
+	3. Extended command-line editing functions (ie, delete word)
+
+	4. Extended pop-up editing functions (ie, delete line)
+
+	5. User-defined keyboard macros, including a "record" key
+
+
+	Version 2.00 still has the following bugs (aside from any that
+	I don't know about yet):
+
+	1. Two-character commands may be skipped when scrolling
+	   backwards through the history buffer (from the command-line,
+	   not the pop-up).
+
+	2. The following scenario:
+
+	     a. Enter a command;
+	     b. At the next prompt hit the right arrow several times
+		to get the first few characters of the last command,
+		but not the whole last command;
+	     c. Hit the left arrow to back up a few characters;
+	     d. Hit delete a couple of times;
+	     e. Use the right arrow to advance to the end of the line;
+	     f. Observe that the character that comes up after the last
+		character that was originally made to appear in step
+		(b) is duplicated several times and the end of the
+		command is lost.
+
+	These are trivial problems that I just haven't had time to get
+	to yet.  Hopefully they will get fixed in the next update.
+
+	All comments and bugs to jeffpar.
+
+	NOTE: If you still have problems with CUE in conjunction with FTP,
+	VTP, or other LanMan software after updating to this release, let
+	me know.  Otherwise, all problems in this area will be presumed to
+	have been fixed.
+
+
+Installation
+
+	Copy CUE.EXE to a directory in your path, CUESUBS.DLL to a
+	directory in your LIBPATH, and CUE.SYS to a directory containing
+	other OS/2 .SYS files.	If you're not sure what a LIBPATH is,
+	just copy CUESUBS.DLL to the directory that holds all your other
+	OS/2 .DLL files.  Edit your CONFIG.SYS to add a line like:
+
+	    DEVICE=CUE.SYS
+
+	If you want Cue to be loaded automatically in every CMD screen
+	group you create, add (at a minimum) the following line:
+
+	    CUE
+
+	to the .CMD file specified on the PROTSHELL= line of your
+	CONFIG.SYS, which usually looks something like:
+
+	    PROTSHELL=C:\OS2\SHELL.EXE C:\OS2\CMD.EXE /K C:\AUTOEXEC.CMD
+
+	Specifying CUE only in your STARTUP.CMD file will have effect only
+	in your first screen group, and is probably not what you want to do.
+
+	CUE is a lot like the memory-resident tools you are probably
+	familiar with under DOS, but currently works only in OS/2's pro-
+	tected-mode.  Like most intelligent memory-resident programs, it
+	will not reload when run more than once in a given screen group.
+	This also allows you to change certain CUE options (like the
+	keyboard repeat rate, or load a new alias file, etc) by simply re-
+	running CUE with the new options.  CUE cannot be unloaded unless
+	you use it to shell to another process (such as another instance of
+	CMD.EXE) or you terminate the screen group.
+
+
+CUE examples
+
+     1. This lists CUE usage and options.
+
+	  CUE /H
+
+     2. This activates CUE for the life of the screen group.
+
+	  CUE
+
+     3. This activates CUE for the life of CMD (ie, until you type EXIT).
+
+	  CUE CMD
+
+     4. This loads CUE with a variety of options, like an alias file, new
+	keyboard repeat delay and rate, etc.
+
+	  CUE /A ALIAS.OS2 /R250,30 /43
+
+     5. This lists the aliases currently loaded, and increases your
+	keyboard repeat rate to the maximum allowed.
+
+	  CUE /L /R0
+
+     6. This reloads your current aliases.
+
+	  CUE /A ALIAS.OS2
+
+     7. This is an example of feeding other programs some initial input
+	(usually done from a batch file).  Any type-ahead will appear after
+	all CUE-generated input has been exhausted.
+
+	  CUE /Q /S "password\n"
+	  WZMAIL
+
+     8. This feeds a capital A and an up-arrow into a subsequent program,
+	after a 2-second pause (the pause units are 1/4 sec).
+
+	  CUE /QS "\p8\d65\D72"
+
+     9. This does the same thing as before, but specifies the keystrokes in
+	hex.
+
+	  CUE /QS "\p8\x41\X48"
+
+
+Alias examples
+
+	If you put the following three lines in a file named ALIAS.OS2:
+
+	  ABORT EXIT
+	  25	CLS && CUE /Q25
+	  43	CLS && CUE /Q43
+
+	and ran CUE /A ALIAS.OS2, you would have 3 new internal commands
+	at your disposal.  Note that the alias ABORT is useful when you've
+	loaded CUE with /P and you want to be able to exit CUE's parent CMD
+	(/P disables the EXIT command from the keyboard).
+
+	The aliases 25 and 43 demonstrate how aliases can be used to issue
+	multiple commands, and turn individual features of CUE (or any other
+	utility) into separate commands.
+
+
+Quick explanation of history buffers
+
+	CUE records all your input lines in what is referred to here as
+	a history buffer, and allows you to recall past lines with the
+	UP arrow key, or more recent lines with the DOWN arrow key.
+	You can view a series of lines at once with the PGUP key, which
+	displays a "history window" and can be sequentially scanned
+	with the UP and DOWN arrow keys, or in window-sized increments
+	by pressing PGUP and PGDN keys.  To select a line for editing
+	from the history window, highlight it and press a right or left
+	arrow; to select one for immediate entry, press ENTER instead.
+	To exit the history window, press ESCAPE.  CTRL-F1 can be pressed
+	at any time for help.
+
+	Note that the traditional DOS/OS2 command-line template is
+	still supported, as are all the keys that manipulate it (F1, F3,
+	etc), and that the template is NOT part of the history buffer.
+	This means that F3 and the UP arrow key may not always display
+	the same thing:  the UP arrow displays the last line you typed,
+	whereas F3 displays the current template, which is usually the
+	last line received by an application, BUT may be different from
+	what you typed, especially if it contained an alias that was
+	expanded.  CUE allows this to occur, because some applications
+	may wish to preset the template in certain ways that are more
+	convenient.
+
+	CUE provides you with one history buffer per screen group, which
+	can optionally be divided into as many as 4 partitions of equal
+	size.  As different processes request input, each is assigned an
+	unused partition;  if there are none, then the least recently
+	used partition is cleared and re-assigned.  To the extent that
+	CUE can detect them, all other instances of a previously encountered
+	process (in that screen group) will use the partition assigned
+	to the first instance (ie, a second copy of CMD).  The effect is
+	much the same as that achieved by other popular command-line editors
+	(for DOS).
+
+	The default history buffer size is 4kb, and the default number of
+	partitions is 2, providing you with 2 2kb partitions (just as if
+	you had specified /B 4096,2 when you loaded CUE).  Assuming CMD was
+	the first process to request input, its commands would go into the
+	first partition, and a subsequent process' commands (ie, FTP) into
+	the second.  If you shelled from FTP to a second copy of CMD, the
+	first partition would be selected again;  if instead you shelled to,
+	say, MASM, the absence of a third partition would force CUE to clear
+	the first partition and assign it to MASM.  When you later returned
+	to CMD, the first partition would again be cleared and assigned
+	back to CMD.
+
+	CUE doesn't create individual history buffers for every process,
+	because history would be lost every time you exited and later
+	restarted the same program (for example, repeatedly shelling to CMD
+	from another program).	CUE's current approach also makes it easier
+	for multiple instances of the same process in the same screen group
+	to refer to the same history buffer, and reduces the amount of memory
+	spent on non-interactive processes.  Private, per-process history
+	buffers may be an option in a future CUE update.
