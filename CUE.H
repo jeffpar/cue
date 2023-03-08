@@ -14,6 +14,7 @@
 #define MAXSTRINGINSIZE 255	/* the current KBDSTRINGIN limitation */
 
 
+#define BELL	    7
 #define BS	    8		/* delete character to left of cursor */
 #define CR	    13		/* also ENTER */
 #define LF	    10		/* also CTRL_ENTER or CTRL_J */
@@ -136,6 +137,7 @@
 #define INDX_VIOGETMODE     5
 #define INDX_VIOSETCURPOS   6
 #define INDX_VIOSETMODE     8
+#define INDX_VIOWRTNCHAR    11
 #define INDX_VIOWRTCHARSTRATT 15
 #define INDX_VIOWRTTTY	    17
 #define INDX_VIOSCROLLUP    18

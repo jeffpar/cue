@@ -125,7 +125,7 @@ HKBD hndl;
 				continue;
 			}
 			VioGetCurPos(&row, &col, VIO_HANDLE);
-			if (col != 1)
+			if (col == 0 || col > 3)
 			    continue;
 
 			kdata.cb = sizeof(kdata);

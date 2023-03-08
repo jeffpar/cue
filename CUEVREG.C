@@ -297,6 +297,52 @@ HVIO hndl;
 }
 
 
+/*  _VioWrtNChar - replacement for VioWrtNChar
+ *
+ *  This handler has the same parameters as the original VioWrtNChar
+ *  function, always returning ROUTER_PASS (-1).  It's sole purpose is
+ *  to shadow output on a dumb terminal.  Note that this is not even REPLACED
+ *  unless certain Cue options have been selected, such as COM support.
+ *
+ *  ENTRY   pdata   far ptr to a character
+ *	    length  number of times to repeat
+ *	    row     row to start printing
+ *	    col     column to start printing
+ *	    hndl    video handle, usually VIO_HANDLE (0)
+ *
+ *  EXIT    ROUTER_PASS (-1) if I didn't hook the function, ROUTER_DONE
+ *	    (0) otherwise
+ */
+
+USHORT FAR _VioWrtNChar(pdata, length, row, col, hndl)
+PCHAR pdata;
+USHORT length;
+USHORT row, col;
+HVIO hndl;
+{
+    USHORT rc1, rc2;
+    register NPSG psg;
+    UCHAR seq[5];
+
+    if (SwitchStacks(6))
+	return(ROUTER_PASS);
+    if (psg=mapsg())
+	if (psg->commport && length && row <= 24-1) {
+	    seq[0] = ESCAPE;
+	    seq[1] = '-';
+	    seq[2] = '3';
+	    seq[3] = (UCHAR)(' '+length-1);
+	    seq[4] = *pdata;
+	    ttysetpos(row, col, psg->commhandle);
+	    DosWrite(psg->commhandle, seq, 5, &rc1);
+	    VioGetCurPos(&rc1, &rc2, hndl);
+	    ttysetpos(rc1, rc2, psg->commhandle);
+	}
+    RestoreStacks();
+    return(ROUTER_PASS);
+}
+
+
 /*  _VioWrtCharStrAtt - replacement for VioWrtCharStrAtt
  *
  *  This handler has the same parameters as the original VioWrtCharStrAtt
@@ -362,28 +408,49 @@ HVIO hndl;
     UCHAR cell[2];
     register NPSG psg;
     USHORT row, col;
+    register USHORT i, rc = ROUTER_PASS;
 
     if (SwitchStacks(4))
-	return(ROUTER_PASS);
+	return(rc);
     if (psg=mapsg()) {
 	psg->vioflags |= VIOFLG_WRTTTY;
-	if (psg->commport) {
+	if (LockThread()) {
+	  if (psg->commport) {
 	    if (psg->commhandle && psg->commrate) {
-		DosWrite(psg->commhandle, pdata, length, &col);
-		VioGetCurPos(&row, &col, hndl);
-		if (row > 24-1) {
-		  cell[0] = ' ';
-		  cell[1] = WHITE;
-		  VioScrollUp(0, 0, 24-1, 80-1, 1, cell, hndl);
-		  row = 24-1;
-		  VioSetCurPos(row, col, hndl);
+	      i = 0;
+	      while (length--) {
+		if ((row = (pdata[i] == BELL)) || pdata[i] == LF) {
+		  DosWrite(psg->commhandle, pdata, ++i, &col);
+		  VioWrtTTY(pdata, i-row, hndl);
+		  pdata += i;
+		  i = 0;
 		}
+		else
+		  i++;
+	      }
+	      if (i) {
+		DosWrite(psg->commhandle, pdata, i, &col);
+		VioWrtTTY(pdata, i, hndl);
+	      }
 	    }
+	  }
+	  rc = ROUTER_DONE;
+	  UnLockThread();
+	}
+	else if (psg->commport) {
+	  VioGetCurPos(&row, &col, hndl);
+	  if (row > 24-1) {
+	    cell[0] = ' ';
+	    cell[1] = WHITE;
+	    VioScrollUp(0, 0, 24-1, 80-1, 1, cell, hndl);
+	    row = 24-1;
+	    VioSetCurPos(row, col, hndl);
+	  }
 	}
 	psg->vioflags &= ~VIOFLG_WRTTTY;
     }
     RestoreStacks();
-    return(ROUTER_PASS);
+    return(rc);
 }
 
 
@@ -722,6 +789,9 @@ ULONG faraddr;
 	  break;
       case INDX_VIOSETMODE:
 	  rc = _VioSetMode(*(PVIOMODEINFO *)(p+1), *p);
+	  break;
+      case INDX_VIOWRTNCHAR:
+	  rc = _VioWrtNChar(*(PCH *)(p+4), *(p+3), *(p+2), *(p+1), *p);
 	  break;
       case INDX_VIOWRTCHARSTRATT:
 	  rc = _VioWrtCharStrAtt(*(PCH *)(p+6), *(p+5), *(p+4), *(p+3), *(PBYTE *)(p+1), *p);

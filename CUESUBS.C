@@ -85,6 +85,7 @@ USHORT uCommrate;
 	    dcb.flags2 = 0;
 	    DosDevIOCtl(0, &dcb,
 			    COM_SETDCB, COM_CATEGORY, psg->commhandle);
+	    ttyclear(psg->commhandle);
 	}
 	checkthreads(psg);
     }
