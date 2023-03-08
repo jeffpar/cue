@@ -1,0 +1,95 @@
+#	Makefile for CUE.EXE
+#		     CUE.SYS
+#		     CUESUBS.DLL
+#
+#	By Jeff Parsons  Jan '88  Updated Sep '88
+
+.SUFFIXES:
+.SUFFIXES: .c	.asm .h   .inc .obj .lst .sys .exe .com .map .sym
+.SUFFIXES: .def .lnk .lrf
+
+CC=cl
+COFLAGS=-Oals -G2cs -W2 -nologo
+CLFLAGS=-Ox -G2c -W2 -Zl -nologo
+
+ASM=masm
+AOFLAGS=-Ml
+ALFLAGS=-Ml
+
+LINK=link
+LFLAGS=/map
+LIBS=doscalls.lib
+
+CUEDLL1=cuesubs.obl cuereg.obl cuepop.obl cuefind.obl
+CUEDLL2=cuemse.obl cuekbd.obl cuevio.obl cuekreg.obl
+CUEDLL3=cuetty.obl cuevreg.obl cueksup.obl cuehist.obl
+CUEDLL4=cueproc.obl cuecomm.obl cueutil.obl cuesup.obl
+
+
+#	Generic rules
+
+.c.obj:
+	$(CC) $(COFLAGS) -c $*.c
+
+.c.obl:
+	$(CC) $(CLFLAGS) -Fo$@ -c $*.c
+
+.c.lst:
+	$(CC) $(CLFLAGS) -Fc$@ -Fonul -c $*.c
+
+.asm.obj:
+	$(ASM) $(AOFLAGS) $*;
+
+.asm.obl:
+	$(ASM) $(ALFLAGS) $*,$@;
+
+.asm.lst:
+	$(ASM) $(ALFLAGS) -l $*,nul;
+
+.def.lib:
+	implib $*.lib $**
+
+.map.sym:
+	if exist $@ del $@
+	mapsym $*
+	if not exist $@ ren $*.sym $@
+
+.obj.sys:
+	$(LINK) $**,$@,$*/map,$(LIBS),$*;
+
+
+#	Rules for building CUE binaries
+
+cue:	cuesubs.dll cuesubs.sym cue.exe cue.sys
+
+cleanbin:
+	if exist *.dll del *.dll
+	if exist *.exe del *.exe
+	if exist *.sys del *.sys
+	if exist *.map del *.map
+	if exist *.sym del *.sym
+
+cleanall: cleanbin
+	if exist *.obj del *.obj
+	if exist *.obl del *.obl
+
+cue.exe: cue.obj debug.obj cue.def cuesubs.lib
+	$(LINK) cue debug,cue.exe,/map,cuesubs,cue;
+
+cue.sys: cuesys.obj cuesys.def
+	$(LINK) cuesys,cue.sys,cuesys/map,$(LIBS),cuesys;
+
+cue.sym: cuesys.map
+
+cuesubs.lrf: makefile
+	echo $(CUEDLL1)+>cuesubs.lrf
+	echo $(CUEDLL2)+>>cuesubs.lrf
+	echo $(CUEDLL3)+>>cuesubs.lrf
+	echo $(CUEDLL4)>>cuesubs.lrf
+	echo cuesubs.dll>>cuesubs.lrf
+	echo $* $(LFLAGS)>>cuesubs.lrf
+	echo $(LIBS)>>cuesubs.lrf
+	echo cuesubs;>>cuesubs.lrf
+
+cuesubs.dll: $(CUEDLL1) $(CUEDLL2) $(CUEDLL3) $(CUEDLL4) cuesubs.lrf cuesubs.def
+	$(LINK) @cuesubs.lrf;
