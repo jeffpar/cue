@@ -1,0 +1,125 @@
+#	Makefile for CUE.EXE
+#		     CUE.SYS
+#		     CUESUBS.DLL
+#
+#	By Jeff Parsons  Jan '88  Updated Sep '88
+
+CC=cl
+CFLAGS=-Oals -G2cs -W2
+DLLFLAGS=-Ox -G2c -W2 -Zl -DSOROC
+
+ASM=masm
+MFLAGS=-Ml
+
+LINK=link
+LFLAGS=/map
+LIBS=doscalls
+
+#	Generic rules
+
+.c.obj:
+	$(CC) $(DLLFLAGS) -c $*.c
+
+.c.exe:
+	$(CC) $(CFLAGS) -Fm $*.c
+
+.c.cod:
+	$(CC) $(CFLAGS) -Fc -c $*.c
+
+.asm.obj:
+	$(ASM) $(MFLAGS) $*;
+
+.def.lib:
+	implib $*.lib $**
+
+.map.sym:
+	mapsym $*
+
+.obj.sys:
+	$(LINK) $*,$*.sys,$*/map,,$*.def;
+
+
+#	Rules for building CUE
+
+cue:		cue.exe cuesubs.dll cuesys.sys \
+		cue.sym cuesubs.sym cuesys.sym \
+		c:\os2\libs\cuesubs.dll c:\os2\libs\cuesubs.sym
+
+cuesup.obj:	cuesup.asm
+
+cuesubs.obj:	cuesubs.c
+
+cuereg.obj:	cuereg.c
+
+cuepop.obj:	cuepop.c
+
+cuefind.obj:	cuefind.c
+
+cuekbd.obj:	cuekbd.c
+
+cuevio.obj:	cuevio.c
+
+cuekreg.obj:	cuekreg.c
+
+cuetty.obj:	cuetty.c
+
+cuevreg.obj:	cuevreg.c
+
+cuemse.obj:	cuemse.c
+
+cueksup.obj:	cueksup.c
+
+cuehist.obj:	cuehist.c
+
+cueproc.obj:	cueproc.c
+
+cuecomm.obj:	cuecomm.c
+
+cueutil.obj:	cueutil.c
+
+cuesubs.dll:	cuesubs.lrf cuesubs.def \
+		cuesup.obj  cuesubs.obj cuereg.obj  cuepop.obj	cuefind.obj \
+		cuekbd.obj  cuevio.obj	cuekreg.obj cuetty.obj	cuevreg.obj cuemse.obj	\
+		cueksup.obj cuehist.obj cueproc.obj cuecomm.obj cueutil.obj
+	$(LINK) @$*.lrf;
+
+cuesubs.sym:	cuesubs.map
+	mapsym $**
+
+cuesubs.lib:	cuesubs.def
+
+debug.obj:	debug.asm
+	$(ASM) -Ml $*;
+
+cue.obj:	cue.c
+	$(CC) $(CFLAGS) -c $*.c
+
+cue.exe:	cue.obj debug.obj cue.def cuesubs.lib
+	$(LINK) cue debug,,/map,cuesubs,cue;
+
+cue.sym:	cue.map
+	mapsym $**
+
+cuesys.obj:	cuesys.asm
+
+cuesys.sys:	cuesys.obj
+	$(LINK) $**,$@,cuesys/map,doscalls,cuesys;
+	copy cuesys.sys cue.sys
+
+cuesys.sym:	cuesys.map
+	mapsym $**
+
+#c:\os2\sys\cue.sys:	     cue.sys
+#	 copy cue.sys c:\os2\sys\cue.sys
+
+#c:\os2\sys\cue.sym:	     cuesys.sym
+#	 copy cuesys.sym c:\os2\sys\cue.sym
+
+c:\tools\os2\cue.exe:	    cue.exe
+	copy cue.exe c:\tools\os2
+
+c:\os2\libs\cuesubs.dll:    cuesubs.dll
+	copy cuesubs.dll c:\os2\libs
+
+c:\os2\libs\cuesubs.sym:    cuesubs.sym
+	copy cuesubs.sym c:\os2\libs
