@@ -26,22 +26,22 @@ Cue is a lot like the memory-resident tools you are probably familiar with under
 
 ## Summary of Existing Major Features
 
-  1. Command-line recall (history)
-  2. Enhanced command-line editing features
-  3. Context-sensitive help, including on-line summary of usage and options
-  4. User-defined internal commands (aliases)
-  5. Simulated keyboard input
-  6. Scroll memory
-  7. Process tracking
-  8. Miscellaneous features
+1. Command-line recall (history)
+2. Enhanced command-line editing features
+3. Context-sensitive help, including on-line summary of usage and options
+4. User-defined internal commands (aliases)
+5. Simulated keyboard input
+6. Scroll memory
+7. Process tracking
+8. Miscellaneous features
 
 ## Summary of Planned Major Features
 
-  1. Keyboard macros
-  2. User configuration file
-  3. Built-in "intelligent" aliases (ie, TO)
-  4. Extended screen control (change colors, fonts, modes, timeout, etc)
-  5. Extended process control (list, terminate, etc)
+1. Keyboard macros
+2. User configuration file
+3. Built-in "intelligent" aliases (ie, TO)
+4. Extended screen control (change colors, fonts, modes, timeout, etc)
+5. Extended process control (list, terminate, etc)
 
 ## Descriptions of Existing Major Features
 
@@ -203,3 +203,9 @@ Send suggestions, comments, and bugs to jeffpar.
 ## License
 
 Cue is released under the terms of an [MIT License](LICENSE.txt).
+
+## Historical Notes
+
+The *master* branch contains the entire contents of an old `.ARC` archive -- the infamous "Feb 28 1988" `CUE.ARC` that I wrote about in this [PCjs blog post](https://www.pcjs.org/blog/2023/03/07/).
+
+The *latest" branch contains a more recent set of Cue source code files (the "latest" set of sources that I've found so far), but they were not accompanied with any binaries, so you'll have to fire up your OS/2 development machine and build them if you want to use them.
