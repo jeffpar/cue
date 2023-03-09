@@ -206,6 +206,6 @@ Cue is released under the terms of an [MIT License](LICENSE.txt).
 
 ## Historical Notes
 
-The *master* branch contains the entire contents of an old `.ARC` archive -- the infamous "Feb 28 1988" `CUE.ARC` that I wrote about in this [PCjs blog post](https://www.pcjs.org/blog/2023/03/07/).
+The *master* branch contains the entire contents of an old `.ARC` archive -- the infamous "Feb 28 1989" `CUE.ARC` that I wrote about in this [PCjs blog post](https://www.pcjs.org/blog/2023/03/07/).
 
 The *latest" branch contains a more recent set of Cue source code files (the "latest" set of sources that I've found so far), but they were not accompanied with any binaries, so you'll have to fire up your OS/2 development machine and build them if you want to use them.
