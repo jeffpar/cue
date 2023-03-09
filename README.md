@@ -2,10 +2,7 @@
 
 OS/2 Command-line Utility/Editor
 
-Documentation for Cue (still incomplete)
-
-February, 1988
-By Jeff Parsons
+Copyright (c) 1988-2023 Jeff Parsons
 
 ## Requirements
 
@@ -202,3 +199,7 @@ The aliases 25 and 43 demonstrate how aliases can be used to issue multiple comm
 ## Notes
 
 Send suggestions, comments, and bugs to jeffpar.
+
+## License
+
+Cue is released under the terms of an [MIT License](LICENSE.txt).
